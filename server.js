@@ -1,3 +1,5 @@
+var fs = require("fs");
+
 // Listen on a specific host via the HOST environment variable
 var host = process.env.HOST || "0.0.0.0";
 // Listen on a specific port via the PORT environment variable
@@ -64,7 +66,11 @@ cors_proxy
       // Do not add X-Forwarded-For, etc. headers, because Heroku already adds it.
       xfwd: false,
     },
-    httpsOptions: {},
+    httpsOptions: {
+      ///etc/secrets/<filename>
+      key: fs.readFileSync("/etc/secrets/key.pem"),
+      cert: fs.readFileSync("/etc/secrets/cert.pem"),
+    },
   })
   .listen(port, host, function () {
     console.log("Running CORS Anywhere on " + host + ":" + port);
