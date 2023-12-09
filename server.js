@@ -66,6 +66,7 @@ cors_proxy
       // Do not add X-Forwarded-For, etc. headers, because Heroku already adds it.
       xfwd: false,
     },
+    secure: false,
     // httpsOptions: {
     //   ///etc/secrets/<filename>
     //   key: fs.readFileSync("/etc/secrets/key.pem"),
