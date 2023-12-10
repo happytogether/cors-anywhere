@@ -1,4 +1,5 @@
 var fs = require("fs");
+var path = require("path");
 
 // Listen on a specific host via the HOST environment variable
 var host = process.env.HOST || "0.0.0.0";
@@ -67,8 +68,8 @@ cors_proxy
       xfwd: false,
     },
     httpsOptions: {
-      key: fs.readFileSync(path.join(__dirname, 'key.pem')),
-      cert: fs.readFileSync(path.join(__dirname, 'cert.pem')),
+      key: fs.readFileSync(path.join(__dirname, "key.pem")),
+      cert: fs.readFileSync(path.join(__dirname, "cert.pem")),
     },
   })
   .listen(port, host, function () {
