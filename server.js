@@ -4,7 +4,7 @@ var path = require("path");
 // Listen on a specific host via the HOST environment variable
 var host = process.env.HOST || "0.0.0.0";
 // Listen on a specific port via the PORT environment variable
-var port = process.env.PORT || 7000;
+var port = process.env.PORT || 8080;
 var port_https = process.env.PORT_https || 7200; // for https
 
 // Grab the blacklist from the command-line so that we can update the blacklist without deploying
@@ -68,11 +68,11 @@ cors_proxy
       // Do not add X-Forwarded-For, etc. headers, because Heroku already adds it.
       xfwd: false,
     },
-    httpsOptions: {
-      key: fs.readFileSync(path.join(__dirname, "key.pem")),
-      cert: fs.readFileSync(path.join(__dirname, "cert.pem")),
-    },
+    // httpsOptions: {
+    //   key: fs.readFileSync(path.join(__dirname, "key.pem")),
+    //   cert: fs.readFileSync(path.join(__dirname, "cert.pem")),
+    // },
   })
-  .listen(port_https, host, function () {
-    console.log("Running CORS Anywhere https on " + host + ":" + port_https);
+  .listen(port, host, function () {
+    console.log("Running CORS Anywhere https on " + host + ":" + port);
   });
